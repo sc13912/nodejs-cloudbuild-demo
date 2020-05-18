@@ -8,7 +8,7 @@ spec:
   - host: node-app.local
     http:
       paths:
-      - path: /*
+      - path: /
         backend:
           serviceName: {{ .Chart.Name  }}
           servicePort: 80

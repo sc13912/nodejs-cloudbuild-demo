@@ -8,6 +8,7 @@ image:
 
 service:
   port: 80
+  type: NodePort
 
 app_port: 3000
 environment: production
