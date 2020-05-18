@@ -28,11 +28,11 @@ steps:
       - upgrade
       - -i
       - node-app
-      - ./node-app
+      - ./k8s-helm/node-app
       - --set
       - image.repository=gcr.io/$PROJECT_ID/node-app,image.tag=$COMMIT_SHA
       - -f
-      - ./node-app/values.yaml
+      - ./k8s-helm/node-app/values.yaml
     env:
       - KUBECONFIG=/workspace/.kube/config
       - TILLERLESS=false
