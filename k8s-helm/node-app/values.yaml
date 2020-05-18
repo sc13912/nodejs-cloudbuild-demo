@@ -1,0 +1,13 @@
+---
+replicaCount: 1
+
+image:
+  repository: gcr.io/playground-s-11-8ffa4e/node-app
+  tag: latest
+  pullPolicy: Always
+
+service:
+  port: 80
+
+app_port: 3000
+environment: production

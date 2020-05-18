@@ -1,0 +1,60 @@
+steps:
+  # Build NodeJs demo app image
+  - name: gcr.io/cloud_builders/docker
+    args:
+      - build
+      - -t
+      - gcr.io/$PROJECT_ID/node-app:$COMMIT_SHA
+      - .
+
+  # Push NodeJs demo app image to Google Cloud Registry
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - gcr.io/$PROJECT_ID/node-app:$COMMIT_SHA
+
+  # Configure a kubectl workspace for this project
+  - name: gcr.io/cloud-builders/kubectl
+    args:
+      - cluster-info
+    env:
+      - CLOUDSDK_COMPUTE_REGION=$_CUSTOM_REGION
+      - CLOUDSDK_CONTAINER_CLUSTER=$_CUSTOM_CLUSTER
+      - KUBECONFIG=/workspace/.kube/config
+
+  # Deploy with Helm
+  - name: gcr.io/$PROJECT_ID/helm
+    args:
+      - upgrade
+      - -i
+      - node-app
+      - ./node-app
+      - --set
+      - image.repository=gcr.io/$PROJECT_ID/node-app,image.tag=$COMMIT_SHA
+      - -f
+      - ./node-app/values.yaml
+    env:
+      - KUBECONFIG=/workspace/.kube/config
+      - TILLERLESS=false
+      - TILLER_NAMESPACE=kube-system
+
+  # Integration Testing
+  - name: gcr.io/cloud-builders/kubectl
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        kubectl delete --wait=true pod curl
+        kubectl run curl --restart=Never --image=gcr.io/cloud-builders/curl --generator=run-pod/v1 -- http://node-app.default.svc.cluster.local
+        sleep 15
+        kubectl logs curl | grep OK
+    env:
+      - CLOUDSDK_COMPUTE_REGION=$_CUSTOM_REGION
+      - CLOUDSDK_CONTAINER_CLUSTER=$_CUSTOM_CLUSTER
+      - KUBECONFIG=/workspace/.kube/config
+
+
+timeout: 1200s
+substitutions:
+  _CUSTOM_REGION: australia-southeast1
+  _CUSTOM_CLUSTER: node-pool-cluster-demo
