@@ -47,6 +47,7 @@ steps:
         kubectl delete --wait=true pod curl
         kubectl run curl --restart=Never --image=gcr.io/cloud-builders/curl --generator=run-pod/v1 -- http://node-app.default.svc.cluster.local/health
         sleep 15
+        kubectl logs curl 
         kubectl logs curl | grep OK
     env:
       - CLOUDSDK_COMPUTE_REGION=$_CUSTOM_REGION
