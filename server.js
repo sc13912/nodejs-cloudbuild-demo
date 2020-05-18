@@ -7,6 +7,7 @@ export function health() {
     const router = new express.Router();
 
     router.get('/', (req, res) => {
+        res.status(200);
         res.json({status: 'OK'});
     });
 
