@@ -1,6 +1,6 @@
 # nodejs-cloudbuild-demo
-A simple nodejs app containerised and packaged through Helm Chart for fast K8s deployment
-Also including intructrions 
+A basic nodejs app containerised and packaged through Helm Chart for fast K8s deployment.  
+This example also includes a simple CI/CD pipeline deployed in the Google Cloud (GCP) envrionemt, leveraging cloud native platfroms and tools such as Google Cloud Build, Google Kubernetes Engine (GKE) and Google Container Registry (GCR).
 
 
 ## Prerequisites
@@ -68,9 +68,9 @@ docker push gcr.io/$PROJECT_ID/helm
 ```
 
 
-## Step-4: Deploy a CICD pipeline levearging Cloud Build, GKE and GCR
+## Step-4: Deploy a CI/CD pipeline levearging Cloud Build, GKE and GCR
 * Configure a pipeline trigger in Cloud Build to link to your own Git repo
 * Make a git commit & push 
 * Verify the pipeline has been trigged and monitor the build/deployemnt process 
 * Verify the Helm chart deployment status on your GKE cluster
-
+* Access and check the demo app
