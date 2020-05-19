@@ -87,5 +87,5 @@ docker push gcr.io/$PROJECT_ID/helm
 <img src="images/helm.png">
 <img src="images/kube.png">
 
-* Access and check the demo app (may need to update the local host file record for "node-app.local" to the NGINX Ingress public address)
+* Access and check the demo app (may need to update the local host file A record for "node-app.local" to point to the NGINX Ingress public address)
 <img src="images/node-app.png">
