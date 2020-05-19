@@ -72,7 +72,6 @@ docker build -t gcr.io/$PROJECT_ID/helm .
 docker push gcr.io/$PROJECT_ID/helm
 ```
 
-
 ## Step-4: Deploy a CI/CD pipeline levearging Cloud Build, GKE and GCR
 * Configure a pipeline trigger in Cloud Build to link to your own Git repo
 * Make a git commit & push 
