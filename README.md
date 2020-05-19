@@ -75,7 +75,13 @@ docker push gcr.io/$PROJECT_ID/helm
 
 ## Step-4: Deploy a CI/CD pipeline levearging Cloud Build, GKE and GCR
 * Configure a pipeline trigger in Cloud Build to link to your own Git repo
-* Make a git commit & push 
-* Verify the pipeline has been trigged and monitor the build/deployemnt process 
+<img src="images/ci-trigger.png">
+* Make a git commit & push
+<img src="images/git-push.png">
+* Verify the pipeline has been trigged and monitor the build/deployemnt process
+<img src="images/pipeline.png">
 * Verify the Helm chart deployment status on your GKE cluster
+<img src="images/helm.png">
+<img src="images/kube.png">
 * Access and check the demo app (may need to update the local host file record for "node-app.local" to the NGINX Ingress public address)
+<img src="images/node-app.png">
