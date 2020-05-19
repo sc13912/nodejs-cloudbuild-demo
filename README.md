@@ -47,6 +47,11 @@ https://github.com/sc13912/tf-gcp-gke.git
 
 
 ## Step-3: Prepare the GKE/K8s envrionment for pipeline run
+### Register cluster and update kubeconfig file (in order to use kubectl)
+``` 
+gcloud container clusters get-credentials node-pool-cluster-demo --region australia-southeast1
+``` 
+
 ### Deploy a NGINX Ingress Controller - Required for the Helm Chart
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml  
