@@ -77,4 +77,4 @@ docker push gcr.io/$PROJECT_ID/helm
 * Make a git commit & push 
 * Verify the pipeline has been trigged and monitor the build/deployemnt process 
 * Verify the Helm chart deployment status on your GKE cluster
-* Access and check the demo app
+* Access and check the demo app (may need to update the local host file record for "node-app.local" to the NGINX Ingress public address)
