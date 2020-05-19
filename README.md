@@ -12,6 +12,7 @@ This example also includes a simple CI/CD pipeline deployed in the Google Cloud 
 https://github.com/sc13912/nodejs-k8s-demo.git
 ```
 
+
 ## Step-1: Prepare the GCP/GKE Envrionment
 ### Configure GCloud Authentication
 ```
