@@ -1,5 +1,5 @@
 steps:
-  # Build NodeJs demo app image
+  # Build demo app image
   - name: gcr.io/cloud_builders/docker
     args:
       - build
@@ -7,13 +7,13 @@ steps:
       - gcr.io/$PROJECT_ID/node-app:$COMMIT_SHA
       - .
 
-  # Push NodeJs demo app image to Google Cloud Registry
+  # Push demo app image to GCR
   - name: gcr.io/cloud-builders/docker
     args:
       - push
       - gcr.io/$PROJECT_ID/node-app:$COMMIT_SHA
 
-  # Configure a kubectl workspace for this project
+  # Create a kubectl workspace for this project
   - name: gcr.io/cloud-builders/kubectl
     args:
       - cluster-info
@@ -22,7 +22,7 @@ steps:
       - CLOUDSDK_CONTAINER_CLUSTER=$_CUSTOM_CLUSTER
       - KUBECONFIG=/workspace/.kube/config
 
-  # Deploy with Helm
+  # Deploy with Helm Chart
   - name: gcr.io/$PROJECT_ID/helm
     args:
       - upgrade
