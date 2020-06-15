@@ -21,7 +21,6 @@ gcloud init
 gcloud config set accessibility/screen_reader true
 gcloud auth application-default login
 gcloud auth configure-docker
-gcloud config get-value project
 ```
 
 ### Enable Required GCP APIs
@@ -67,9 +66,7 @@ helm init --history-max 200 --service-account tiller
 
 ### Build & push a Helm image to GCR for pipeline run
 ```
-cd ~
-git clone https://github.com/GoogleCloudPlatform/cloud-builders-community.git
-cd cloud-builders-community/helm
+cd ./k8s-helm/cloud-builders-community/helm
 docker build -t gcr.io/$PROJECT_ID/helm .
 docker push gcr.io/$PROJECT_ID/helm
 ```
