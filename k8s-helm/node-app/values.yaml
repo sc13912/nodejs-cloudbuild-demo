@@ -2,7 +2,7 @@
 replicaCount: 1
 
 image:
-  repository: gcr.io/playground-s-11-8ffa4e/node-app
+  repository: gcr.io/$PROJECT_ID/node-app
   tag: latest
   pullPolicy: Always
 

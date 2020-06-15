@@ -13,6 +13,15 @@ steps:
       - push
       - gcr.io/$PROJECT_ID/node-app:$COMMIT_SHA
 
+  # Create a kubectl workspace for this project
+  - name: gcr.io/cloud-builders/kubectl
+    args:
+      - cluster-info
+    env:
+      - CLOUDSDK_COMPUTE_REGION=$_CUSTOM_REGION
+      - CLOUDSDK_CONTAINER_CLUSTER=$_CUSTOM_CLUSTER
+      - KUBECONFIG=/workspace/.kube/config
+
   # Deploy with Helm Chart
   - name: gcr.io/$PROJECT_ID/helm
     args:
@@ -25,8 +34,6 @@ steps:
       - -f
       - ./k8s-helm/node-app/values.yaml
     env:
-      - CLOUDSDK_COMPUTE_REGION=$_CUSTOM_REGION
-      - CLOUDSDK_CONTAINER_CLUSTER=$_CUSTOM_CLUSTER
       - KUBECONFIG=/workspace/.kube/config
       - TILLERLESS=false
       - TILLER_NAMESPACE=kube-system
