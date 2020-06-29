@@ -5,4 +5,4 @@ This example also includes a simple CI/CD pipeline deployed in the Google Cloud 
 
 ---
 ## Guide
-- [Refer to here](https://route179.wordpress.com/2020/06/09/create-a-ci-cd-pipeline-with-gke-gcr-and-cloud-build/)
+- [Refer to my Blog at here](https://route179.wordpress.com/2020/06/09/create-a-ci-cd-pipeline-with-gke-gcr-and-cloud-build/)
